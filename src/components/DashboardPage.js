@@ -8,7 +8,7 @@ import AddRecipeForm from "./AddRecipeForm";
 import EditRecipeForm from "./EditRecipeForm";
 import "../styles/styles.scss";
 
-class Recipes extends React.Component {
+class DashboardPage extends React.Component {
   constructor(props) {
     super(props);
     this.handleSaveRecipe = this.handleSaveRecipe.bind(this);
@@ -249,4 +249,4 @@ class Recipes extends React.Component {
   }
 }
 
-export default Recipes;
+export default DashboardPage;

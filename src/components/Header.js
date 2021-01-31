@@ -1,14 +1,25 @@
 import React from "react";
-// import '../styles/styles.scss';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { startLogout } from "../actions/auth";
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1 className="text-center header">Recipe Box</h1>
+export const Header = ({ startLogout }) => (
+  <header className="header">
+    <div className="content-container">
+      <div className="header__content">
+        <Link className="header__title" to="/dashboard">
+          <p>Carte du Jour</p>
+        </Link>
+        <button className="button button--link" onClick={startLogout}>
+          Logout
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  </header>
+);
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout()),
+});
+
+export default connect(undefined, mapDispatchToProps)(Header);
