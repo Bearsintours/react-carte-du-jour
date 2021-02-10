@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -6,6 +7,7 @@ import Badge from "react-bootstrap/Badge";
 import Accordion from "react-bootstrap/Accordion";
 import AddRecipeForm from "./AddRecipeForm";
 import EditRecipeForm from "./EditRecipeForm";
+import { startAddRecipe } from "../actions/recipe";
 import "../styles/styles.scss";
 
 class DashboardPage extends React.Component {
@@ -99,6 +101,7 @@ class DashboardPage extends React.Component {
   }
 
   handleSaveRecipe(recipe) {
+    this.props.startAddRecipe(recipe);
     return this.setState((prevState) => ({
       recipes: prevState.recipes.concat(recipe),
     }));
@@ -249,4 +252,8 @@ class DashboardPage extends React.Component {
   }
 }
 
-export default DashboardPage;
+const mapDispatchToProps = (dispatch) => ({
+  startAddRecipe: (recipe) => dispatch(startAddRecipe(recipe)),
+});
+
+export default connect(undefined, mapDispatchToProps)(DashboardPage);

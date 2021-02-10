@@ -14,7 +14,6 @@ class EditRecipeForm extends React.Component {
 
   onIngredientsChange = (e) => {
     const ingredients = e.target.value.split(",");
-    console.log(ingredients);
     this.props.handleEditIngredients(ingredients);
   };
 

@@ -11,7 +11,6 @@ import LoadingPage from "./components/LoadingPage";
 import reportWebVitals from "./reportWebVitals";
 
 const store = configureStore();
-console.log("test");
 const jsx = (
   <React.StrictMode>
     <Provider store={store}>
@@ -30,11 +29,12 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById("app"));
 
+// Firebase auth state observer
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     renderApp();
-    if (history.location.pathname == "/") {
+    if (history.location.pathname === "/") {
       history.push("/dashboard");
     }
   } else {
