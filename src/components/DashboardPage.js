@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Badge from "react-bootstrap/Badge";
 import Accordion from "react-bootstrap/Accordion";
+import RecipeList from "./RecipeList";
 import AddRecipeForm from "./AddRecipeForm";
 import EditRecipeForm from "./EditRecipeForm";
 import { startAddRecipe } from "../actions/recipes";
@@ -180,12 +181,13 @@ class DashboardPage extends React.Component {
             />
           </Form.Group>
         </form>
-        <div>
+        {/* <div>
           <p>Recipes from DB:</p>
           {this.props.recipes.map((recipe) => {
             return <p key={recipe.id}>{recipe.recipeName}</p>;
           })}
-        </div>
+        </div> */}
+        <RecipeList />
         <div>
           <Accordion>
             {recipes.map((recipe) => (
@@ -262,10 +264,4 @@ const mapDispatchToProps = (dispatch) => ({
   startAddRecipe: (recipe) => dispatch(startAddRecipe(recipe)),
 });
 
-const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
+export default connect(undefined, mapDispatchToProps)(DashboardPage);
