@@ -8,6 +8,7 @@ import "normalize.css/normalize.css";
 import "./styles/styles.scss";
 import { firebase } from "./services/firebase";
 import LoadingPage from "./components/LoadingPage";
+import { startSetRecipes } from "./actions/recipes";
 import reportWebVitals from "./reportWebVitals";
 
 const store = configureStore();
@@ -33,7 +34,9 @@ ReactDOM.render(<LoadingPage />, document.getElementById("app"));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    renderApp();
+    store.dispatch(startSetRecipes()).then(() => {
+      renderApp();
+    });
     if (history.location.pathname === "/") {
       history.push("/dashboard");
     }

@@ -19,3 +19,28 @@ export const startAddRecipe = (recipeData = {}) => {
       });
   };
 };
+
+// SET RECIPE
+export const setRecipes = (recipes) => ({
+  type: "SET_RECIPES",
+  recipes,
+});
+
+export const startSetRecipes = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database
+      .ref(`/users/${uid}/recipes`)
+      .once("value")
+      .then((snapshot) => {
+        const recipes = [];
+        snapshot.forEach((child) => {
+          recipes.push({
+            id: child.key,
+            ...child.val(),
+          });
+        });
+        dispatch(setRecipes(recipes));
+      });
+  };
+};
