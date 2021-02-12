@@ -44,3 +44,21 @@ export const startSetRecipes = () => {
       });
   };
 };
+
+// REMOVE RECIPE
+export const removeRecipe = (id) => ({
+  type: "REMOVE_RECIPE",
+  id,
+});
+
+export const startRemoveRecipe = (id) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database
+      .ref(`users/${uid}/recipes/${id}`)
+      .remove()
+      .then(() => {
+        dispatch(removeRecipe(id));
+      });
+  };
+};

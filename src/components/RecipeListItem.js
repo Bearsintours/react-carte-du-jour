@@ -1,7 +1,10 @@
 import React from "react";
+import Button from "react-bootstrap/button";
+import { connect } from "react-redux";
+import { startRemoveRecipe } from "../actions/recipes";
 
-const RecipeListItem = ({ recipe }) => {
-  const { recipeName, prepTime, ingredients, instructions } = recipe;
+const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
+  const { id, recipeName, prepTime, ingredients, instructions } = recipe;
   return (
     <div>
       <h1>{recipeName}</h1>
@@ -11,8 +14,18 @@ const RecipeListItem = ({ recipe }) => {
         <p key={idx}>{ingredient}</p>
       ))}
       <h2>{`Instructions: ${instructions}`}</h2>
+      <Button size="small" variant="warning" onClick={() => console.log("edit")}>
+        Edit
+      </Button>
+      <Button size="small" variant="danger" onClick={() => startRemoveRecipe(id)}>
+        Delete
+      </Button>
     </div>
   );
 };
 
-export default RecipeListItem;
+const mapDispatchToProps = (dispatch) => ({
+  startRemoveRecipe: (id) => dispatch(startRemoveRecipe(id)),
+});
+
+export default connect(undefined, mapDispatchToProps)(RecipeListItem);

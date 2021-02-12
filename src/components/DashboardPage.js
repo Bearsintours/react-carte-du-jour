@@ -168,94 +168,42 @@ class DashboardPage extends React.Component {
     });
     const recipes = filter.length > 0 ? filteredRecipes : allRecipes;
     return (
-      <div className="recipes">
-        <form>
-          <Form.Group>
-            <Form.Control
-              className="search-bar"
-              size="lg"
-              type="text"
-              value={this.state.filter}
-              placeholder="Search"
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-        </form>
-        {/* <div>
-          <p>Recipes from DB:</p>
-          {this.props.recipes.map((recipe) => {
-            return <p key={recipe.id}>{recipe.recipeName}</p>;
-          })}
-        </div> */}
-        <RecipeList />
-        <div>
-          <Accordion>
-            {recipes.map((recipe) => (
-              <Card key={recipe.recipeName}>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey={recipe.recipeName}>
-                    {recipe.recipeName}
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey={recipe.recipeName}>
-                  <Card.Body>
-                    <h4 className="category"> Ingredients: </h4>
-                    <p>
-                      {recipe.ingredients.length !== 0 &&
-                        recipe.ingredients.map((ingredient) => <Badge key={ingredient}> {ingredient}</Badge>)}
-                    </p>
-                    {recipe.prepTime !== "" && <h4 className="category">{`Preparation:  ${recipe.prepTime} min`}</h4>}
-                    <h4 className="category"> Instructions: </h4>
-                    {recipe.instructions.length !== 0 &&
-                      recipe.instructions
-                        .split(".")
-                        .map((instruction, idx) => (
-                          <p className="instructions" key={idx}>{`${idx + 1}- ${instruction}`}</p>
-                        ))}
-                    <Button
-                      size="small"
-                      variant="warning"
-                      onClick={(e) => {
-                        this.handleEditRecipe(recipe);
-                      }}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      size="small"
-                      variant="danger"
-                      onClick={(e) => {
-                        this.handleDeleteRecipe(recipe);
-                      }}
-                    >
-                      Delete
-                    </Button>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            ))}
-          </Accordion>
+      <>
+        <div className="search">
+          <form>
+            <Form.Group>
+              <Form.Control
+                className="search-bar"
+                size="lg"
+                type="text"
+                value={this.state.filter}
+                placeholder="Search"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+          </form>
         </div>
-        <div>
+        <div className="recipes">
+          <RecipeList />
           <Button variant="primary" size="large" onClick={this.handleOpenAddModal}>
             new recipe
           </Button>
+          <AddRecipeForm
+            showModal={this.state.showAddModal}
+            handleCloseModal={this.handleCloseAddModal}
+            handleSaveRecipe={this.handleSaveRecipe}
+          />
+          <EditRecipeForm
+            showModal={this.state.showEditModal}
+            handleCloseModal={this.handleCloseEditModal}
+            recipeToEdit={this.state.recipeToEdit}
+            handleEditPrepTime={this.handleEditPrepTime}
+            handleEditIngredients={this.handleEditIngredients}
+            handleEditInstructions={this.handleEditInstructions}
+            handleUpdateRecipe={this.handleUpdateRecipe}
+          />
         </div>
-        <AddRecipeForm
-          showModal={this.state.showAddModal}
-          handleCloseModal={this.handleCloseAddModal}
-          handleSaveRecipe={this.handleSaveRecipe}
-        />
-        <EditRecipeForm
-          showModal={this.state.showEditModal}
-          handleCloseModal={this.handleCloseEditModal}
-          recipeToEdit={this.state.recipeToEdit}
-          handleEditPrepTime={this.handleEditPrepTime}
-          handleEditIngredients={this.handleEditIngredients}
-          handleEditInstructions={this.handleEditInstructions}
-          handleUpdateRecipe={this.handleUpdateRecipe}
-        />
-      </div>
+      </>
     );
   }
 }

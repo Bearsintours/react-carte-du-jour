@@ -44,7 +44,7 @@ class AddRecipeForm extends React.Component {
                 <InputGroup.Text>Recipe</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
-                inputref={(input) => (this.recipeName = input)}
+                ref={(input) => (this.recipeName = input)}
                 type="text"
                 name="recipeName"
                 placeholder="Enter recipe name"
@@ -59,7 +59,7 @@ class AddRecipeForm extends React.Component {
                 <InputGroup.Text>Ingredients</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
-                inputref={(input) => (this.ingredients = input)}
+                ref={(input) => (this.ingredients = input)}
                 type="text"
                 name="ingredients"
                 placeholder="Enter ingredients (comma separated)"
@@ -73,7 +73,7 @@ class AddRecipeForm extends React.Component {
                 <InputGroup.Text>Preparation</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
-                inputref={(input) => (this.prepTime = input)}
+                ref={(input) => (this.prepTime = input)}
                 type="text"
                 name="prepTime"
                 placeholder="Enter time in min"
@@ -84,9 +84,9 @@ class AddRecipeForm extends React.Component {
           <Form.Group controlId="instructions">
             <Form.Label>Instructions</Form.Label>{" "}
             <Form.Control
-              inputref={(input) => (this.instructions = input)}
+              ref={(input) => (this.instructions = input)}
               style={{ height: "200px" }}
-              componentClass="textarea"
+              as="textarea"
               type="text"
               name="instructions"
               placeholder="Separate steps with a dot '.'"
