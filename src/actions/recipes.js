@@ -62,3 +62,21 @@ export const startRemoveRecipe = (id) => {
       });
   };
 };
+
+// EDIT RECIPE
+export const startEditRecipe = (recipeData = {}) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    const { id, recipeName, ingredients, prepTime, instructions } = recipeData;
+    const updatedRecipe = { recipeName, ingredients, prepTime, instructions };
+    return database
+      .ref(`users/${uid}/recipes/${id}`)
+      .update(updatedRecipe)
+      .then((ref) => dispatch(editRecipe({ id: ref.key, ...updatedRecipe })));
+  };
+};
+
+export const editRecipe = (recipe) => ({
+  type: "EDIT_RECIPE",
+  recipe,
+});

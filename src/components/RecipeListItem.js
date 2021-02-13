@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/button";
 import { connect } from "react-redux";
 import { startRemoveRecipe } from "../actions/recipes";
+import { startEditRecipe } from "../actions/recipes";
 
 const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
   const { id, recipeName, prepTime, ingredients, instructions } = recipe;
@@ -26,6 +27,7 @@ const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   startRemoveRecipe: (id) => dispatch(startRemoveRecipe(id)),
+  startEditRecipe: (id) => dispatch(startEditRecipe(id)),
 });
 
 export default connect(undefined, mapDispatchToProps)(RecipeListItem);
