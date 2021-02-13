@@ -10,7 +10,7 @@ class AddRecipeForm extends React.Component {
     super(props);
     this.state = {
       submitBtnDisabled: true,
-      recipeName: "",
+      name: "",
       prepTime: "",
       ingredients: "",
       instructions: "",
@@ -24,7 +24,7 @@ class AddRecipeForm extends React.Component {
   handleAddRecipe = (e) => {
     e.preventDefault();
     const recipe = {
-      recipeName: this.state.recipeName.trim(),
+      name: this.state.name.trim(),
       prepTime: this.state.prepTime.trim(),
       ingredients: this.state.ingredients.length > 0 ? this.state.ingredients.split(",") : [],
       instructions: this.state.instructions,
@@ -38,15 +38,15 @@ class AddRecipeForm extends React.Component {
     return (
       <Modal show={this.props.showModal} animation={true}>
         <Form onSubmit={this.addRecipe}>
-          <Form.Group controlId="recipeName">
+          <Form.Group controlId="name">
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text>Recipe</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
-                ref={(input) => (this.recipeName = input)}
+                ref={(input) => (this.name = input)}
                 type="text"
-                name="recipeName"
+                name="name"
                 placeholder="Enter recipe name"
                 autoFocus
                 onChange={(e) => this.handleChangeRecipe(e)}
@@ -94,7 +94,7 @@ class AddRecipeForm extends React.Component {
             />
           </Form.Group>
           <div>
-            <Button variant="success" onClick={this.handleAddRecipe} disabled={this.state.recipeName.length < 1}>
+            <Button variant="success" onClick={this.handleAddRecipe} disabled={this.state.name.length < 1}>
               Save
             </Button>
             <Button variant="danger" onClick={this.props.handleCloseModal}>

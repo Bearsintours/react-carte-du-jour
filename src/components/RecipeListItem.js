@@ -1,23 +1,25 @@
 import React from "react";
-import Button from "react-bootstrap/button";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/button";
 import { startRemoveRecipe } from "../actions/recipes";
-import { startEditRecipe } from "../actions/recipes";
 
 const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
-  const { id, recipeName, prepTime, ingredients, instructions } = recipe;
+  const { id, name, prepTime, ingredients, instructions } = recipe;
   return (
     <div>
-      <h1>{recipeName}</h1>
+      <h1>{name}</h1>
       <h2>{`Preparation time: ${prepTime} minutes`}</h2>
       <h2>Ingredients:</h2>
       {ingredients.map((ingredient, idx) => (
         <p key={idx}>{ingredient}</p>
       ))}
       <h2>{`Instructions: ${instructions}`}</h2>
-      <Button size="small" variant="warning" onClick={() => console.log("edit")}>
-        Edit
-      </Button>
+      <Link to={`/edit/${id}`}>
+        <Button size="small" variant="warning">
+          Edit
+        </Button>
+      </Link>
       <Button size="small" variant="danger" onClick={() => startRemoveRecipe(id)}>
         Delete
       </Button>
@@ -27,7 +29,6 @@ const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   startRemoveRecipe: (id) => dispatch(startRemoveRecipe(id)),
-  startEditRecipe: (id) => dispatch(startEditRecipe(id)),
 });
 
 export default connect(undefined, mapDispatchToProps)(RecipeListItem);

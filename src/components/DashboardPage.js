@@ -30,7 +30,7 @@ class DashboardPage extends React.Component {
     filter: "",
     recipes: [
       {
-        recipeName: "Croque-Monsieur",
+        name: "Croque-Monsieur",
         ingredients: [
           "5 tbs butter",
           "1 tbs flour",
@@ -46,7 +46,7 @@ class DashboardPage extends React.Component {
           "Melt the butter over low heat in a small saucepan and add the flour all at once, stirring with a wooden spoon for 2 minutes. Slowly pour the hot milk into the butter?flour mixture and cook, whisking constantly, until the sauce is thickened. Off the heat add the salt, pepper, nutmeg, 1/2 cup grated Gruyere, and the Parmesan and set aside",
       },
       {
-        recipeName: "Nopales Salad",
+        name: "Nopales Salad",
         ingredients: [
           "2 pounds cactus pads",
           "4 Roma tomatoes",
@@ -61,7 +61,7 @@ class DashboardPage extends React.Component {
       },
     ],
     recipeToEdit: {
-      recipeName: "",
+      name: "",
       ingredients: [],
       prepTime: "",
       instructions: "",
@@ -110,14 +110,14 @@ class DashboardPage extends React.Component {
 
   handleDeleteRecipe = (recipeToDelete) => {
     return this.setState((prevState) => ({
-      recipes: prevState.recipes.filter((recipe) => recipe.recipeName !== recipeToDelete.recipeName),
+      recipes: prevState.recipes.filter((recipe) => recipe.name !== recipeToDelete.name),
     }));
   };
 
   handleEditRecipe = (recipeToEdit) => {
     this.setState(() => ({
       recipeToEdit: {
-        recipeName: recipeToEdit.recipeName,
+        name: recipeToEdit.name,
         prepTime: recipeToEdit.prepTime,
         ingredients: recipeToEdit.ingredients,
         instructions: recipeToEdit.instructions,
@@ -147,7 +147,7 @@ class DashboardPage extends React.Component {
   handleUpdateRecipe = () => {
     const updatedRecipe = this.state.recipeToEdit;
     const recipes = [...this.state.recipes];
-    const index = recipes.findIndex((recipe) => recipe.recipeName === updatedRecipe.recipeName);
+    const index = recipes.findIndex((recipe) => recipe.name === updatedRecipe.name);
     recipes[index] = updatedRecipe;
     this.setState({ recipes });
   };
@@ -163,7 +163,7 @@ class DashboardPage extends React.Component {
     const filteredRecipes = allRecipes.filter((recipe) => {
       return (
         recipe.ingredients.join("").toLowerCase().includes(filter.toLowerCase()) ||
-        recipe.recipeName.toLowerCase().includes(filter.toLowerCase())
+        recipe.name.toLowerCase().includes(filter.toLowerCase())
       );
     });
     const recipes = filter.length > 0 ? filteredRecipes : allRecipes;

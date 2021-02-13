@@ -9,8 +9,8 @@ export const addRecipe = (recipe) => ({
 export const startAddRecipe = (recipeData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    const { recipeName, ingredients, prepTime, instructions } = recipeData;
-    const recipe = { recipeName, ingredients, prepTime, instructions };
+    const { name, ingredients, prepTime, instructions } = recipeData;
+    const recipe = { name, ingredients, prepTime, instructions };
     return database
       .ref(`users/${uid}/recipes`)
       .push(recipe)
@@ -67,8 +67,8 @@ export const startRemoveRecipe = (id) => {
 export const startEditRecipe = (recipeData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    const { id, recipeName, ingredients, prepTime, instructions } = recipeData;
-    const updatedRecipe = { recipeName, ingredients, prepTime, instructions };
+    const { id, name, ingredients, prepTime, instructions } = recipeData;
+    const updatedRecipe = { name, ingredients, prepTime, instructions };
     return database
       .ref(`users/${uid}/recipes/${id}`)
       .update(updatedRecipe)
