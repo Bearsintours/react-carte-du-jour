@@ -64,15 +64,15 @@ export const startRemoveRecipe = (id) => {
 };
 
 // EDIT RECIPE
-export const startEditRecipe = (recipeData = {}) => {
+export const startEditRecipe = (id, recipeData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    const { id, name, ingredients, prepTime, instructions } = recipeData;
-    const updatedRecipe = { name, ingredients, prepTime, instructions };
+    const { name, ingredients, prepTime, instructions } = recipeData;
+    const recipe = { name, ingredients, prepTime, instructions };
     return database
       .ref(`users/${uid}/recipes/${id}`)
-      .update(updatedRecipe)
-      .then((ref) => dispatch(editRecipe({ id: ref.key, ...updatedRecipe })));
+      .update(recipe)
+      .then(() => dispatch(editRecipe({ id, ...recipe })));
   };
 };
 

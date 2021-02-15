@@ -4,8 +4,8 @@ import RecipeForm from "./RecipeForm";
 import { startEditRecipe } from "../actions/recipes";
 
 export const EditRecipePage = (props) => {
-  const onSubmit = (recipe) => {
-    props.startEditExpense(recipe);
+  const onSubmit = (recipeData) => {
+    props.startEditRecipe(props.recipe.id, recipeData);
     props.history.push("/");
   };
 
@@ -17,7 +17,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startEditRecipe: (recipe) => dispatch(startEditRecipe),
+  startEditRecipe: (id, recipe) => dispatch(startEditRecipe(id, recipe)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditRecipePage);

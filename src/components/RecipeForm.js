@@ -10,8 +10,8 @@ export const RecipeForm = ({ onSubmit, recipe = {} }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const recipe = { name, ingredients, prepTime, instructions };
-    onSubmit(recipe);
+    const recipeData = { name, ingredients, prepTime, instructions };
+    onSubmit(recipeData);
   };
 
   return (
