@@ -4,13 +4,14 @@ import Button from "react-bootstrap/Button";
 
 export const RecipeForm = ({ onSubmit, recipe = {} }) => {
   const [name, setName] = useState(recipe ? recipe.name : "");
-  const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : []);
+  const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : "");
   const [prepTime, setPrepTime] = useState(recipe ? recipe.prepTime : "");
   const [instructions, setInstructions] = useState(recipe ? recipe.instructions : "");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const recipeData = { name, ingredients, prepTime, instructions };
+    const ingredientsArray = ingredients.split(",");
+    const recipeData = { name, ingredients: ingredientsArray, prepTime, instructions };
     onSubmit(recipeData);
   };
 
