@@ -8,15 +8,15 @@ import "../styles/styles.scss";
 
 export const DashboardPage = () => {
   return (
-    <>
+    <div className="dashboard">
       <SearchForm />
       <RecipeList />
       <Link to="/create">
-        <Button variant="primary" size="large">
+        <Button variant="primary" size="lg">
           Add Recipe
         </Button>
       </Link>
-    </>
+    </div>
   );
 };
 

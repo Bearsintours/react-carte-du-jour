@@ -5,18 +5,20 @@ import Form from "react-bootstrap/Form";
 export const SearchForm = ({ setTextFilter, filters }) => {
   return (
     <div className="search">
-      <form>
-        <Form.Group>
-          <Form.Control
-            className="search-bar"
-            size="lg"
-            type="text"
-            value={filters.text}
-            placeholder="Search"
-            onChange={(e) => setTextFilter(e.target.value)}
-          />
-        </Form.Group>
-      </form>
+      <div className="container">
+        <form>
+          <Form.Group>
+            <Form.Control
+              className="search-bar"
+              size="lg"
+              type="text"
+              value={filters.text}
+              placeholder="Search"
+              onChange={(e) => setTextFilter(e.target.value)}
+            />
+          </Form.Group>
+        </form>
+      </div>
     </div>
   );
 };

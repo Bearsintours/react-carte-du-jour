@@ -1,0 +1,36 @@
+.recipe_box {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: $m-size;
+  padding: 20px 5px;
+  width: 400px;
+}
+
+.recipe_box__btns {
+  margin-top: auto;
+}
+
+.recipe_box__ingredients {
+  margin: 20px auto;
+}
+
+.recipe_box__ingredients span {
+  font-size: $m-size;
+}
+
+.badge {
+  border: 3px solid #ccc;
+  background-color: transparent;
+  color: black;
+  margin: 3px;
+  font-weight: 100;
+  font-size: 1.5rem;
+  padding: 4px;
+}
+
+.instructions {
+  font-weight: 100;
+}

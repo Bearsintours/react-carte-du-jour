@@ -17,46 +17,54 @@ export const RecipeForm = ({ onSubmit, recipe = {} }) => {
 
   return (
     <div className="container">
-      <Form onSubmit={handleOnSubmit}>
-        <Form.Group controlId="name">
-          <Form.Label>Recipe Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter recipe name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            autoFocus
-          />
-        </Form.Group>
-        <Form.Group controlId="Ingredients">
-          <Form.Label>Ingredients</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter ingredients"
-            value={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="prepTime">
-          <Form.Label>Preparation Time</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter time"
-            value={prepTime}
-            onChange={(e) => setPrepTime(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="Instructions">
-          <Form.Label>Instructions</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter instructions"
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
-          />
-        </Form.Group>
-        <Button type="submit" />
-      </Form>
+      <div className="recipe_form">
+        <Form onSubmit={handleOnSubmit}>
+          <Form.Group controlId="name">
+            <Form.Label>Recipe Name</Form.Label>
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Enter recipe name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              autoFocus
+            />
+          </Form.Group>
+          <Form.Group controlId="Ingredients">
+            <Form.Label>Ingredients</Form.Label>
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Enter ingredients"
+              value={ingredients}
+              onChange={(e) => setIngredients(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="prepTime">
+            <Form.Label>Preparation Time</Form.Label>
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Enter time"
+              value={prepTime}
+              onChange={(e) => setPrepTime(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="Instructions">
+            <Form.Label>Instructions</Form.Label>
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Enter instructions"
+              value={instructions}
+              onChange={(e) => setInstructions(e.target.value)}
+            />
+          </Form.Group>
+          <Button type="submit" size="lg">
+            Save
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };

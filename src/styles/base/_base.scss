@@ -3,22 +3,26 @@ html {
 }
 
 body {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Roboto", Helvetica, Arial, sans-serif;
   font-size: $m-size;
   text-align: center;
 }
 
-.app {
-  background-color: rgba(225, 245, 254, 0.8);
-  margin: auto;
-  width: 60%;
-  padding: 1rem;
-  border-radius: 3px;
+a:hover {
+  text-decoration: none;
 }
 
-.header {
-  font-size: 4.8rem;
-  color: #8a6d3b;
+.dashboard {
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.recipes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -26,51 +30,8 @@ body {
   margin: 1rem;
 }
 
-.panel {
-  background-color: #fcf8e3;
-  margin: auto;
-  width: 75%;
-  text-align: left;
-}
-
-.panel-title {
-  font-size: 2rem;
-}
-
-.category {
-  color: #8a6d3b;
-  padding-top: 10px;
-}
-
-.badge {
-  border: 3px solid #f0ad4e;
-  background-color: transparent;
-  color: black;
-  margin: 3px;
-  font-weight: 100;
-  font-size: 1.5rem;
-  padding: 4px;
-}
-
-.instructions {
-  font-weight: 100;
-}
-
-.modal {
-  background-color: transparent;
-  margin: auto;
-  padding: 5rem 10rem;
-  h1 {
-    margin-bottom: 5rem;
-    margin-top: -3rem;
-  }
-  .form-group {
-    margin: 2rem;
-  }
-}
-
 .search-bar {
-  margin: 20px auto;
+  margin: auto;
   padding: 5px;
   width: 190px;
 }

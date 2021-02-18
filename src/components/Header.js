@@ -1,18 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Button from "react-bootstrap/Button";
 import { startLogout } from "../actions/auth";
 
 export const Header = ({ startLogout }) => (
   <header className="header">
-    <div className="content-container">
+    <div className="container">
       <div className="header__content">
-        <Link className="header__title" to="/dashboard">
-          <p>Carte du Jour</p>
-        </Link>
-        <button className="button button--link" onClick={startLogout}>
+        <Link to="/dashboard">Carte du Jour</Link>
+        <Button size="lg" variant="outline-primary" onClick={startLogout}>
           Logout
-        </button>
+        </Button>
       </div>
     </div>
   </header>
