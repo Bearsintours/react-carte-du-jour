@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const RecipeForm = ({ onSubmit, recipe = {} }) => {
+export const RecipeForm = ({ onSubmit, onRemove, recipe = {} }) => {
   const [name, setName] = useState(recipe ? recipe.name : "");
   const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : "");
   const [prepTime, setPrepTime] = useState(recipe ? recipe.prepTime : "");
@@ -10,10 +10,27 @@ export const RecipeForm = ({ onSubmit, recipe = {} }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const ingredientsArray = ingredients.split(",");
+    // push array of ingredients rather than string
+    // TODO: Add individual fields for each ingredients to add
+    const ingredientsArray = Array.isArray(ingredients) ? ingredients : ingredients.split(",");
     const recipeData = { name, ingredients: ingredientsArray, prepTime, instructions };
     onSubmit(recipeData);
   };
+
+  const handleOnRemove = (e) => {
+    e.preventDefault();
+    onRemove();
+  };
+
+  const isFormValid =
+    name &&
+    name.length > 0 &&
+    ingredients &&
+    ingredients.length > 0 &&
+    prepTime &&
+    prepTime.length > 0 &&
+    instructions &&
+    instructions.length > 0;
 
   return (
     <div className="container">
@@ -60,9 +77,14 @@ export const RecipeForm = ({ onSubmit, recipe = {} }) => {
               onChange={(e) => setInstructions(e.target.value)}
             />
           </Form.Group>
-          <Button type="submit" size="lg">
+          <Button disabled={!isFormValid} type="submit" size="lg">
             Save
           </Button>
+          {onRemove && (
+            <Button type="button" size="lg" variant="danger" onClick={handleOnRemove}>
+              Delete
+            </Button>
+          )}
         </Form>
       </div>
     </div>
