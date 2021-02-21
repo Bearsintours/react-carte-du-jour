@@ -4,16 +4,17 @@ import Button from "react-bootstrap/Button";
 
 export const RecipeForm = ({ onSubmit, onRemove, recipe = {} }) => {
   const [name, setName] = useState(recipe ? recipe.name : "");
-  const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : "");
   const [prepTime, setPrepTime] = useState(recipe ? recipe.prepTime : "");
-  const [instructions, setInstructions] = useState(recipe ? recipe.instructions : "");
+  const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : []);
+  const [directions, setdirections] = useState(recipe ? recipe.directions : "");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     // push array of ingredients rather than string
     // TODO: Add individual fields for each ingredients to add
-    const ingredientsArray = Array.isArray(ingredients) ? ingredients : ingredients.split(",");
-    const recipeData = { name, ingredients: ingredientsArray, prepTime, instructions };
+    const ingredientsArray = Array.isArray(ingredients) ? ingredients : ingredients.split(/\r?\n/);
+    const directionsArray = Array.isArray(directions) ? directions : directions.split(/\r?\n/);
+    const recipeData = { name, prepTime, ingredients: ingredientsArray, directions: directionsArray };
     onSubmit(recipeData);
   };
 
@@ -29,52 +30,43 @@ export const RecipeForm = ({ onSubmit, onRemove, recipe = {} }) => {
     ingredients.length > 0 &&
     prepTime &&
     prepTime.length > 0 &&
-    instructions &&
-    instructions.length > 0;
+    directions &&
+    directions.length > 0;
 
   return (
     <div className="container">
       <div className="recipe_form">
         <Form onSubmit={handleOnSubmit}>
-          <Form.Group controlId="name">
-            <Form.Label>Recipe Name</Form.Label>
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Enter recipe name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              autoFocus
-            />
+          <Form.Group GroupcontrolId="title">
+            <Form.Label>Recipe title</Form.Label>
+            <Form.Control size="lg" type="text" value={name} onChange={(e) => setName(e.target.value)} autoFocus />
           </Form.Group>
-          <Form.Group controlId="Ingredients">
+          <Form.Group controlId="time">
+            <Form.Label>Prep time</Form.Label>
+            <Form.Control size="lg" type="text" value={prepTime} onChange={(e) => setPrepTime(e.target.value)} />
+          </Form.Group>
+          <Form.Group controlId="ingredients">
             <Form.Label>Ingredients</Form.Label>
             <Form.Control
+              as="textarea"
+              rows={5}
               size="lg"
               type="text"
-              placeholder="Enter ingredients"
+              placeholder="Put each ingredient in it's own line"
               value={ingredients}
               onChange={(e) => setIngredients(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId="prepTime">
-            <Form.Label>Preparation Time</Form.Label>
+          <Form.Group controlId="directions">
+            <Form.Label>Directions</Form.Label>
             <Form.Control
+              as="textarea"
+              rows={5}
               size="lg"
               type="text"
-              placeholder="Enter time"
-              value={prepTime}
-              onChange={(e) => setPrepTime(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="Instructions">
-            <Form.Label>Instructions</Form.Label>
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Enter instructions"
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
+              placeholder="Put each step in it's own line"
+              value={directions}
+              onChange={(e) => setdirections(e.target.value)}
             />
           </Form.Group>
           <Button disabled={!isFormValid} type="submit" size="lg">

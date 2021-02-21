@@ -9,13 +9,15 @@ import "../styles/styles.scss";
 export const DashboardPage = () => {
   return (
     <div className="dashboard">
-      <SearchForm />
-      <RecipeList />
-      <Link to="/create">
-        <Button variant="primary" size="lg">
-          Add Recipe
-        </Button>
-      </Link>
+      <div className="container">
+        <SearchForm />
+        <RecipeList />
+        <Link to="/create">
+          <Button variant="primary" size="lg">
+            Add Recipe
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

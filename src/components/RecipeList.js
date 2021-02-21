@@ -7,16 +7,14 @@ export const RecipeList = (props) => {
     (recipe) => recipe.name.toLowerCase().includes(filter) || recipe.ingredients.join().toLowerCase().includes(filter)
   );
   return (
-    <div className="container">
-      <div>
-        <h1>Your saved recipes:</h1>
-        <div className="recipes">
-          {filteredRecipes.map((recipe) => (
-            <RecipeListItem key={recipe.id} recipe={recipe} />
-          ))}
-        </div>
+    <>
+      <h1>Your saved recipes:</h1>
+      <div className="recipes">
+        {filteredRecipes.map((recipe) => (
+          <RecipeListItem key={recipe.id} recipe={recipe} />
+        ))}
       </div>
-    </div>
+    </>
   );
 };
 

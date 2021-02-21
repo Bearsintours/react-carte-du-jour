@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 
 const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
-  const { id, name, prepTime, ingredients, instructions } = recipe;
+  const { id, name, prepTime, ingredients, directions } = recipe;
   return (
     <div className="recipe_box">
       <h1>{name}</h1>
@@ -19,7 +19,7 @@ const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
           </span>
         ))}
       </div>
-      <h2>{`Instructions: ${instructions}`}</h2>
+      <h2>{`directions: ${directions}`}</h2>
       <div className="recipe_box__btns">
         <Link to={`/edit/${id}`}>
           <Button size="lg" variant="outline-info">
