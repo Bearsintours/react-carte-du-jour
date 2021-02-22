@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const RecipeForm = ({ onSubmit, onRemove, recipe = {} }) => {
+export const RecipeForm = ({ onSubmit, onRemove, recipe = null }) => {
   const [name, setName] = useState(recipe ? recipe.name : "");
   const [prepTime, setPrepTime] = useState(recipe ? recipe.prepTime : "");
-  const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : []);
-  const [directions, setdirections] = useState(recipe ? recipe.directions : "");
+  const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients.join("\n") : "");
+  const [directions, setDirections] = useState(recipe ? recipe.directions.join("\n") : "");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    // push array of ingredients rather than string
-    // TODO: Add individual fields for each ingredients to add
-    const ingredientsArray = Array.isArray(ingredients) ? ingredients : ingredients.split(/\r?\n/);
-    const directionsArray = Array.isArray(directions) ? directions : directions.split(/\r?\n/);
+    // save array of ingredients rather than string
+    const ingredientsArray = Array.isArray(ingredients) ? ingredients : ingredients.trim().split(/\r?\n/);
+    const directionsArray = Array.isArray(directions) ? directions : directions.trim().split(/\r?\n/);
     const recipeData = { name, prepTime, ingredients: ingredientsArray, directions: directionsArray };
     onSubmit(recipeData);
   };
@@ -37,7 +36,7 @@ export const RecipeForm = ({ onSubmit, onRemove, recipe = {} }) => {
     <div className="container">
       <div className="recipe_form">
         <Form onSubmit={handleOnSubmit}>
-          <Form.Group GroupcontrolId="title">
+          <Form.Group controlId="title">
             <Form.Label>Recipe title</Form.Label>
             <Form.Control size="lg" type="text" value={name} onChange={(e) => setName(e.target.value)} autoFocus />
           </Form.Group>
@@ -66,7 +65,7 @@ export const RecipeForm = ({ onSubmit, onRemove, recipe = {} }) => {
               type="text"
               placeholder="Put each step in it's own line"
               value={directions}
-              onChange={(e) => setdirections(e.target.value)}
+              onChange={(e) => setDirections(e.target.value)}
             />
           </Form.Group>
           <Button disabled={!isFormValid} type="submit" size="lg">
