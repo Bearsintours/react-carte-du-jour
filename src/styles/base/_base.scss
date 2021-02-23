@@ -1,10 +1,14 @@
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 body {
+  background: #f0f2f5;
+  color: #4d4d4d;
   font-family: "Inter", "Roboto", Helvetica, Arial, sans-serif;
   font-size: $m-size;
+  height: 100%;
   text-align: center;
 }
 
@@ -16,8 +20,11 @@ a:hover {
   text-decoration: none;
 }
 
+#app {
+  height: 100%;
+}
+
 .dashboard {
-  background-color: #f0f2f5;
   margin: 0;
   padding: 20px 0;
   width: 100%;

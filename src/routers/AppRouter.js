@@ -5,6 +5,7 @@ import LoginPage from "../components/LoginPage";
 import DashboardPage from "../components/DashboardPage";
 import AddRecipePage from "../components/AddRecipePage";
 import EditRecipePage from "../components/EditRecipePage";
+import RecipePage from "../components/RecipePage";
 import NotFoundPage from "../components/NotFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
@@ -19,6 +20,7 @@ const AppRouter = () => (
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/create" component={AddRecipePage} />
         <PrivateRoute path="/edit/:id" component={EditRecipePage} />
+        <PrivateRoute path="/recipe/:id" component={RecipePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

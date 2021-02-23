@@ -14,12 +14,7 @@
   text-align: center;
 }
 
-.recipe_box__btns {
-  margin-top: auto;
-}
-
-.recipe_box__ingredients,
-.recipe_box__directions {
+.recipe_box__ingredients {
   margin: 10px 0;
 }
 
@@ -27,8 +22,13 @@
   font-size: $m-size;
 }
 
+.recipe_box__ingredients img,
 .recipe_box__directions img {
   margin-right: 10px;
+}
+
+.recipe_box__btns {
+  margin: auto;
 }
 
 .badge {
@@ -39,8 +39,4 @@
   font-weight: 100;
   font-size: 1.5rem;
   padding: 4px;
-}
-
-.directions {
-  font-weight: 100;
 }

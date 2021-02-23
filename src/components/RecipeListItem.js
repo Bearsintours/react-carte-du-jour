@@ -1,32 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
-import Check from "../images/check_circle-24px.svg";
+import Check from "../images/check.svg";
 
-const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
-  const { id, name, prepTime, ingredients, directions } = recipe;
+const RecipeListItem = ({ recipe }) => {
+  const { id, name, prepTime, ingredients } = recipe;
   return (
     <div className="recipe_box">
       <h1>{name}</h1>
-      <h2>{`Preparation time: ${prepTime} minutes`}</h2>
+      <h2>{`Preparation time: ${prepTime}`}</h2>
       <div className="recipe_box__ingredients">
         <h2>Ingredients:</h2>
         {ingredients.map((ingredient, idx) => (
-          <span key={idx}>
-            <Badge pill variant="primary">
-              {ingredient}
-            </Badge>
-          </span>
-        ))}
-      </div>
-      <div className="recipe_box__directions">
-        <h2>Directions:</h2>
-        {directions.map((direction, idx) => (
           <div key={idx}>
             <span>
               <img src={Check} alt="check mark"></img>
-              {direction}
+              {ingredient}
             </span>
           </div>
         ))}
@@ -35,6 +24,11 @@ const RecipeListItem = ({ recipe, startRemoveRecipe }) => {
         <Link to={`/edit/${id}`}>
           <Button size="lg" variant="outline-info">
             Edit
+          </Button>
+        </Link>
+        <Link to={`/recipe/${id}`}>
+          <Button size="lg" variant="outline-info">
+            View
           </Button>
         </Link>
       </div>
