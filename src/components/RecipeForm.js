@@ -51,7 +51,7 @@ export const RecipeForm = ({ onSubmit, onRemove, recipe = null }) => {
               rows={5}
               size="lg"
               type="text"
-              placeholder="Put each ingredient in it's own line"
+              placeholder="Put each ingredient in its own line"
               value={ingredients}
               onChange={(e) => setIngredients(e.target.value)}
             />
@@ -63,7 +63,7 @@ export const RecipeForm = ({ onSubmit, onRemove, recipe = null }) => {
               rows={5}
               size="lg"
               type="text"
-              placeholder="Put each step in it's own line"
+              placeholder="Put each step in its own line"
               value={directions}
               onChange={(e) => setDirections(e.target.value)}
             />
