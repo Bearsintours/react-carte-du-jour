@@ -4,18 +4,21 @@ import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import { startLogout } from "../actions/auth";
 
-export const Header = ({ startLogout }) => (
-  <header className="header">
-    <div className="container">
-      <div className="header__content">
-        <Link to="/dashboard">Carte du Jour</Link>
-        <Button size="lg" variant="outline-primary" onClick={startLogout}>
-          Logout
-        </Button>
+export const Header = ({ startLogout, history }) => {
+  const homeLinkText = history.location.pathname === "/dashboard" ? "Carte du Jour" : "Home";
+  return (
+    <header className="header">
+      <div className="container">
+        <div className="header__content">
+          <Link to="/dashboard">{homeLinkText}</Link>
+          <Button variant="outline-primary" size="lg" onClick={startLogout}>
+            Logout
+          </Button>
+        </div>
       </div>
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   startLogout: () => dispatch(startLogout()),
