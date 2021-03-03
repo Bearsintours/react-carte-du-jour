@@ -8,7 +8,7 @@ export const RecipeList = (props) => {
   );
   return (
     <>
-      <h1>Your saved recipes:</h1>
+      <h1>{props.recipes.length === 0 ? "Start adding recipes!" : "Your saved recipes:"}</h1>
       <div className="recipes">
         {filteredRecipes.map((recipe) => (
           <RecipeListItem key={recipe.id} recipe={recipe} />

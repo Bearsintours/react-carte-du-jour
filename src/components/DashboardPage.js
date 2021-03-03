@@ -1,10 +1,7 @@
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import SearchForm from "./SearchForm";
 import RecipeList from "./RecipeList";
-import { startAddRecipe } from "../actions/recipes";
-import "../styles/styles.scss";
 
 export const DashboardPage = () => {
   return (
@@ -22,8 +19,4 @@ export const DashboardPage = () => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  startAddRecipe: (recipe) => dispatch(startAddRecipe(recipe)),
-});
-
-export default connect(undefined, mapDispatchToProps)(DashboardPage);
+export default DashboardPage;

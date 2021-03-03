@@ -7,10 +7,10 @@ const RecipeListItem = ({ recipe }) => {
   const { id, name, prepTime, ingredients } = recipe;
   return (
     <div className="recipe_box">
-      <h1>{name}</h1>
-      <h2>{`Preparation time: ${prepTime}`}</h2>
+      <h1 data-testid="name">{name}</h1>
+      <h2 data-testid="prepTime">{`Preparation time: ${prepTime}`}</h2>
       <div className="recipe_box__ingredients">
-        <h2>Ingredients:</h2>
+        <h2 data-testid="ingredients">Ingredients:</h2>
         {ingredients.map((ingredient, idx) => (
           <div key={idx}>
             <span>
