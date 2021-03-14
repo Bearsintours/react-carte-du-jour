@@ -31,16 +31,17 @@ REACT_APP_FIREBASE_DB_URL=<firebaseConfig.databaseURL>
 
 ### Local development
 
-Start the app
-```
-yarn start
-```
+Start the app in development mode:
+
+```yarn start``` or ```npm start```
+
+Open http://localhost:3000 to view it in the browser.
+
 
 ## Running the tests
 
-```
-yarn test
-```
+```yarn test``` or ```npm test```
+
 
 ## Built With
 
