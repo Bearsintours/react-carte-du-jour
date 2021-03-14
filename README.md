@@ -22,8 +22,6 @@ REACT_APP_FIREBASE_DB_URL
 
 ### Installation
 
-What things you need to install the software and how to install them
-
 Clone this repository
 
 Install dependencies
