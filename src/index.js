@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import AppRouter, { history } from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
@@ -12,23 +12,30 @@ import { startSetRecipes } from "./actions/recipes";
 import reportWebVitals from "./reportWebVitals";
 
 const store = configureStore();
-const jsx = (
-  <React.StrictMode>
-    <Provider store={store}>
-      <AppRouter />
-    </Provider>
-  </React.StrictMode>
-);
 
+const root = ReactDOM.createRoot(document.getElementById("app"));
 let hasRendered = false;
+
 const renderApp = () => {
   if (!hasRendered) {
-    ReactDOM.render(jsx, document.getElementById("app"));
+    root.render(
+      <React.StrictMode>
+        <React.StrictMode>
+          <Provider store={store}>
+            <AppRouter />
+          </Provider>
+        </React.StrictMode>
+      </React.StrictMode>
+    );
     hasRendered = true;
   }
 };
 
-ReactDOM.render(<LoadingPage />, document.getElementById("app"));
+root.render(
+  <React.StrictMode>
+    <LoadingPage />
+  </React.StrictMode>
+);
 
 // Firebase auth state observer
 firebase.auth().onAuthStateChanged((user) => {
